@@ -14,8 +14,8 @@ return [
     */
 
     'defaults' => [
-        'guard' => 'web',
-        'passwords' => 'users',
+        'guard' => 'admin',
+        'passwords' => 'admin',
     ],
 
     /*
@@ -40,10 +40,22 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
-        
+
+        'student' => [
+            'driver' => 'session',
+            'provider' => 'student',
+        ],
+        'parent' => [
+            'driver' => 'session',
+            'provider' => 'parent',
+        ],
+        'teacher' => [
+            'driver' => 'session',
+            'provider' => 'teacher',
+        ],
         'admin' => [
             'driver' => 'session',
-            'provider' => 'admins',
+            'provider' => 'admin',
         ],
 
         // 'api' => [
@@ -76,9 +88,21 @@ return [
             'model' => App\Models\User::class,
         ],
 
-        'admins' => [
+        'admin' => [
             'driver' => 'eloquent',
             'model' => App\Models\Admin::class,
+        ],
+        'parent' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Parent_User::class,
+        ],
+        'teacher' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Teacher::class,
+        ],
+        'student' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Student::class,
         ],
 
         // 'users' => [
@@ -109,6 +133,12 @@ return [
     'passwords' => [
         'users' => [
             'provider' => 'users',
+            'table' => 'password_reset_tokens',
+            'expire' => 60,
+            'throttle' => 60,
+        ],
+        'admin' => [
+            'provider' => 'admin',
             'table' => 'password_reset_tokens',
             'expire' => 60,
             'throttle' => 60,
