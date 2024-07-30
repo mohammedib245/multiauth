@@ -14,8 +14,9 @@ class DatabaseSeeder extends Seeder
     {
 
         // Seeder
-        $this->call(AdminSeeder::class);
-        $this->call(UserSeeder::class);
+        // $this->call(AdminSeeder::class);
+        // $this->call(UserSeeder::class);
+        $this->call(StudentsTableSeeder::class);
 
 
         // \App\Models\User::factory(10)->create();
@@ -26,4 +27,3 @@ class DatabaseSeeder extends Seeder
         // ]);
     }
 }
-
