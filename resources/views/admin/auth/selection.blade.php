@@ -48,7 +48,7 @@
                                     <img alt="user-img" width="100px;" src="{{URL::asset('assets/images/teacher.png')}}">
                                 </a>
                                 <a class="btn btn-default col-lg-3" title="ادمن" href="{{route('login.show','admin')}}">
-                                    <img alt="user-img" width="100px;" src="{{URL::asset('assets/images/admin.png')}}">
+                                    <img alt="user-img" width="100px;" src="{{URL::asset('assets/images/teacher.png')}}">
                                 </a>
                             </div>
 
