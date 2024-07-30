@@ -17,17 +17,17 @@ use App\Http\Controllers\Auth\LoginController;
 |
 */
 
-Auth::routes();
+// Auth::routes();
 
 
-Route::get('/', function () {
-    return view('welcome');
-    // return view('admin.auth.selection');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+//     // return view('admin.auth.selection');
+// });
 
 
 // show Guards
-Route::get('/selection', [HomeController::class, 'index'])->name('selection');
+Route::get('/', [HomeController::class, 'index'])->name('selection');
 // show Login page with [Guard]
 Route::get('/login/{type}', [LoginController::class, 'showLoginForm'])->middleware('guest')->name('login.show');
 // Route::post('/login',[LoginController::class,'login'])->name('login')->middleware('guest');
@@ -39,10 +39,22 @@ Route::get('/login/{type}', [LoginController::class, 'showLoginForm'])->middlewa
  Route::get('/dashboard',[HomeController::class, 'dashboard'])->middleware('auth')->name('dashboard');
 
 
-// Admin Guard 
-Route::group(['middleware' => ['auth:admin']], function() {
+    // Admin Guard 
+    Route::group(['middleware' => ['auth:admin']], function() {
 
-    // Route::get('/users', [UserController::class, 'users']);
-    //  Route::resource('Students', 'StudentController');
-});
+            // Route::get('/users', [UserController::class, 'users']);
+            //  Route::resource('Students', 'StudentController');
+    });
 
+      //studant routs 
+     Route::prefix('student')->middleware('auth:student')->group(function () {
+    //    Route::view('/', 'student/empty');
+     });
+    //    teacher routes
+     Route::prefix('teacher')->middleware('auth:teacher')->group(function () {
+            Route::get('/teacher/home', [HomeController::class, 'teacherHome']);
+     });
+    //   parents routes
+     Route::prefix('parent')->middleware('auth:parent')->group(function () {
+          Route::get('/parent/home', [HomeController::class, 'parentHome']);
+     });
