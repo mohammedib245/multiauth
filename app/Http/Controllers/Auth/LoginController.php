@@ -9,6 +9,8 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider;
+use App\Models\Student;
+
 
 class LoginController extends Controller
 {
@@ -46,17 +48,22 @@ class LoginController extends Controller
     }
 
 
-    // public function showLoginForm($type)
-    // {
-    //     return view('admin.auth.login',compact('type'));
-    // }
+    public function showLoginForm($type)
+    {
+        return view('admin.auth.login',compact('type'));
+    }
 
-    // public function login(Request $request)
-    // {
-    //     if(Auth::Guard($this->checkGuard($request))->attempt(['email' => $request->email, 'password' => $request->password])){
-    //      return  $this->redirect($request);
-    //     }
-    // }
+    public function login(Request $request)
+    {
+
+       if(Auth::guard($request->type)->attempt($request->only('email', 'password')) ) {
+          $user = Auth::guard($request->type)->user();
+        
+         return view($request->type.'.empty', compact('user'));
+       }
+        
+      
+    }
 
 
 }
